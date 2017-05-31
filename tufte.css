@@ -94,7 +94,9 @@ blockquote { font-size: 1.4rem; }
 blockquote p { width: 55%;
                margin-right: 40px; }
 
-blockquote footer { width: 55%; }
+blockquote footer { width: 55%;
+                    font-size: 1.1rem;
+                    text-align: right; }
 
 footer { text-align: right; }
 
@@ -222,7 +224,7 @@ strong { font-variant: small-caps;
          font-weight: normal; }
 
 span.newthought { font-variant: small-caps;
-                  font-size: 1.1em; }
+                  font-size: 1.2em; }
 
 input.margin-toggle { display: none; }
 
