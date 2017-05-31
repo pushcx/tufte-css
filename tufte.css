@@ -1,40 +1,22 @@
 @charset "UTF-8";
 
-/* Import ET Book styles
-   adapted from https://github.com/edwardtufte/et-book/blob/gh-pages/et-book.css */
-
-@font-face { font-family: "et-book";
-             src: url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot");
-             src: url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot?#iefix") format("embedded-opentype"), url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff") format("woff"), url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.ttf") format("truetype"), url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.svg#etbookromanosf") format("svg");
-             font-weight: normal;
-             font-style: normal; }
-
-@font-face { font-family: "et-book";
-             src: url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.eot");
-             src: url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.eot?#iefix") format("embedded-opentype"), url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff") format("woff"), url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.ttf") format("truetype"), url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.svg#etbookromanosf") format("svg");
-             font-weight: normal;
-             font-style: italic; }
-
-@font-face { font-family: "et-book";
-             src: url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.eot");
-             src: url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.eot?#iefix") format("embedded-opentype"), url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff") format("woff"), url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.ttf") format("truetype"), url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.svg#etbookromanosf") format("svg");
-             font-weight: bold;
-             font-style: normal; }
-
-@font-face { font-family: "et-book-roman-old-style";
-             src: url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot");
-             src: url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot?#iefix") format("embedded-opentype"), url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff") format("woff"), url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.ttf") format("truetype"), url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.svg#etbookromanosf") format("svg");
-             font-weight: normal;
-             font-style: normal; }
+/*
+A note on why I hacked up tufte.css so much:
+The .p class allows me to put block-level elements (signup form) in
+side/marginnotes, which I've changed from spans to divs. Instead of making the
+containing paragraph a p, make it a div.p... and then there's more random
+little fixes to next block-level elements in the main content.
+*/
 
 /* Tufte CSS styles */
-html { font-size: 15px; }
+html { font-size: 15px;
+       letter-spacing: .03em; }
 
 body { width: 87.5%;
        margin-left: auto;
        margin-right: auto;
        padding-left: 12.5%;
-       font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+       font-family: "Lato", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
        background-color: #fffff8;
        color: #111;
        max-width: 1400px;
@@ -72,18 +54,19 @@ p.subtitle { font-style: italic;
 .danger { color: red; }
 
 article { position: relative;
-          padding: 5rem 0rem; }
+          padding: 0; }
 
 section { padding-top: 1rem;
           padding-bottom: 1rem; }
 
-p, ol, ul { font-size: 1.4rem; }
+p, .p, ol, ul, label, footer { font-size: 1.4rem; }
 
-p { line-height: 2rem;
-    margin-top: 1.4rem;
-    margin-bottom: 1.4rem;
-    padding-right: 0;
-    vertical-align: baseline; }
+p, .p { line-height: 2rem;
+        margin-top: 1.4rem;
+        margin-bottom: 1.4rem;
+        padding-right: 0;
+        clear: left;
+        vertical-align: baseline; }
 
 /* Chapter Epigraphs */
 div.epigraph { margin: 5em 0; }
@@ -103,9 +86,9 @@ blockquote { font-size: 1.4rem; }
 blockquote p { width: 55%;
                margin-right: 40px; }
 
-blockquote footer { width: 55%;
-                    font-size: 1.1rem;
-                    text-align: right; }
+blockquote footer { width: 55%; }
+
+footer { text-align: right; }
 
 section>ol, section>ul { width: 45%;
                          -webkit-padding-start: 5%;
@@ -125,6 +108,7 @@ figure { padding: 0;
 
 figcaption { float: right;
              clear: right;
+             margin-right: -48%;
              margin-top: 0;
              margin-bottom: 0;
              font-size: 1.1rem;
@@ -169,6 +153,12 @@ img { max-width: 100%; }
                          line-height: 1.3;
                          vertical-align: baseline;
                          position: relative; }
+.sidenote p, .marginnote p { font-size: 1.1rem;
+                             line-height: 1.3;
+                             vertical-align: baseline;
+                             width: 100%; }
+
+.under-headline { margin-top: 4.7rem; } /* h1 height + margin-bottom */
 
 .sidenote-number { counter-increment: sidenote-counter; }
 
@@ -187,23 +177,26 @@ img { max-width: 100%; }
 
 blockquote .sidenote, blockquote .marginnote { margin-right: -82%;
                                                min-width: 59%;
-                                               text-align: left; }    
+                                               text-align: left; }
 
-p, footer, table { width: 55%; }
+article > hr, section > hr,
+article > p, section > p,
+article > .p, section > .p,
+article > ol, section > ol,
+article > ul, section > ul,
+article > blockquote > ul, section > blockquote > ul,
+footer,
+table { width: 55%; }
+
+article > hr, section > hr { margin: 0; }
 
 div.fullwidth, table.fullwidth { width: 100%; }
 
-div.table-wrapper { overflow-x: auto;
-                    font-family: "Trebuchet MS", "Gill Sans", "Gill Sans MT", sans-serif; }
-
-.sans { font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-        letter-spacing: .03em; }
+div.table-wrapper { overflow-x: auto; }
 
 code { font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-       font-size: 1.0rem;
+       font-size: 1.2rem;
        line-height: 1.42; }
-
-.sans > code { font-size: 1.2rem; }
 
 h1 > code, h2 > code, h3 > code { font-size: 0.80em; }
 
@@ -219,8 +212,12 @@ pre.code.fullwidth { width: 90%; }
 .fullwidth { max-width: 90%;
              clear:both; }
 
+strong { font-variant: small-caps;
+         font-size: 1.1em;
+         font-weight: normal; }
+
 span.newthought { font-variant: small-caps;
-                  font-size: 1.2em; }
+                  font-size: 1.1em; }
 
 input.margin-toggle { display: none; }
 
@@ -231,7 +228,13 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
 @media (max-width: 760px) { body { width: 84%;
                                    padding-left: 8%;
                                    padding-right: 8%; }
-                            p, footer { width: 100%; }
+                            article > p, section > p,
+                            article > .p, section > .p,
+                            article > ol, section > ol,
+                            article > ul, section > ul,
+                            article > blockquote > ul, section > blockquote > ul,
+                            footer,
+                            table { width: 100%; }
                             pre.code { width: 97%; }
                             ul { width: 85%; }
                             figure { max-width: 90%; }
@@ -239,7 +242,7 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
                                                                       max-width: none; }
                             blockquote { margin-left: 1.5em;
                                          margin-right: 0em; }
-                            blockquote p, blockquote footer { width: 100%; }
+                            blockquote p, blockquote .p, blockquote footer { width: 100%; }
                             label.margin-toggle:not(.sidenote-number) { display: inline; }
                             .sidenote, .marginnote { display: none; }
                             .margin-toggle:checked + .sidenote,
