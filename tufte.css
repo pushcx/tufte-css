@@ -5,7 +5,7 @@ A note on why I hacked up tufte.css so much:
 The .p class allows me to put block-level elements (signup form) in
 side/marginnotes, which I've changed from spans to divs. Instead of making the
 containing paragraph a p, make it a div.p... and then there's more random
-little fixes to next block-level elements in the main content.
+little fixes to nest block-level elements in the main content.
 */
 
 /* Tufte CSS styles */
@@ -67,14 +67,15 @@ article { position: relative;
 section { padding-top: 1rem;
           padding-bottom: 1rem; }
 
-p, .p, ol, ul, label, footer { font-size: 1.4rem; }
+.p,
+p, ol, ul { font-size: 1.4rem;
+            line-height: 2rem; }
 
-p, .p { line-height: 2rem;
-        margin-top: 1.4rem;
-        margin-bottom: 1.4rem;
-        padding-right: 0;
-        clear: left;
-        vertical-align: baseline; }
+.p,
+p { margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    padding-right: 0;
+    vertical-align: baseline; }
 
 /* Chapter Epigraphs */
 div.epigraph { margin: 5em 0; }
@@ -100,11 +101,19 @@ blockquote footer { width: 55%;
 
 footer { text-align: right; }
 
-section>ol, section>ul { width: 45%;
-                         -webkit-padding-start: 5%;
-                         -webkit-padding-end: 5%; }
+article > p, section > p,
+article > .p, section > .p,
+article > ol, section > ol,
+article > ul, section > ul,
+article > blockquote > ul, section > blockquote > ul,
+footer,
+section > p, section > footer, section > table { width: 55%; }
 
-li { padding: 0.5rem 0; }
+/* 50 + 5 == 55, to be the same width as paragraph */
+section > ol, section > ul { width: 50%;
+                             -webkit-padding-start: 5%; }
+
+li:not(:first-child) { margin-top: 0.25rem; }
 
 figure { padding: 0;
          border: 0;
@@ -172,8 +181,7 @@ img { max-width: 100%; }
 
 .sidenote-number { counter-increment: sidenote-counter; }
 
-.sidenote-number:after, .sidenote:before { content: counter(sidenote-counter) " ";
-                                           font-family: et-book-roman-old-style;
+.sidenote-number:after, .sidenote:before { font-family: et-book-roman-old-style;
                                            position: relative;
                                            vertical-align: baseline; }
 
@@ -188,14 +196,6 @@ img { max-width: 100%; }
 blockquote .sidenote, blockquote .marginnote { margin-right: -82%;
                                                min-width: 59%;
                                                text-align: left; }
-
-article > p, section > p,
-article > .p, section > .p,
-article > ol, section > ol,
-article > ul, section > ul,
-article > blockquote > ul, section > blockquote > ul,
-footer,
-table { width: 55%; }
 
 div.fullwidth, table.fullwidth { width: 100%; }
 
@@ -232,6 +232,17 @@ label.sidenote-number { display: inline; }
 
 label.margin-toggle:not(.sidenote-number) { display: none; }
 
+.iframe-wrapper { position: relative;
+                  padding-bottom: 56.25%; /* 16:9 */
+                  padding-top: 25px;
+                  height: 0; }
+
+.iframe-wrapper iframe { position: absolute;
+                         top: 0;
+                         left: 0;
+                         width: 100%;
+                         height: 100%; }
+
 @media (max-width: 760px) { body { width: 84%;
                                    padding-left: 8%;
                                    padding-right: 8%; }
@@ -241,9 +252,10 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
                             article > ul, section > ul,
                             article > blockquote > ul, section > blockquote > ul,
                             footer,
-                            table { width: 100%; }
+                            section > p, section > footer, section > table { width: 100%; }
                             pre.code { width: 97%; }
-                            ul { width: 85%; }
+                            section > ol { width: 90%; }
+                            section > ul { width: 90%; }
                             figure { max-width: 90%; }
                             figcaption, figure.fullwidth figcaption { margin-right: 0%;
                                                                       max-width: none; }
