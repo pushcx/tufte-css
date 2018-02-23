@@ -107,7 +107,7 @@ article > ol, section > ol,
 article > ul, section > ul,
 article > dl, section > dl,
 article > blockquote > ul, section > blockquote > ul,
-footer,
+.holds-notes, footer,
 section > p, section > footer, section > table { width: 55%; }
 
 /* 50 + 5 == 55, to be the same width as paragraph */
@@ -231,6 +231,8 @@ input.margin-toggle { display: none; }
 
 label.sidenote-number { display: inline; }
 
+label.margin-toggle { font-size: 1.4rem;
+                      font-weight: normal; }
 label.margin-toggle:not(.sidenote-number) { display: none; }
 
 .iframe-wrapper { position: relative;
