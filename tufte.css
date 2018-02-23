@@ -267,6 +267,7 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
                             blockquote p, blockquote .p, blockquote footer { width: 100%; }
                             label.margin-toggle:not(.sidenote-number) { display: inline; }
                             .sidenote, .marginnote { display: none; }
+                            .open.marginnote, .open.sidenote
                             .margin-toggle:checked + .sidenote,
                             .margin-toggle:checked + .marginnote { display: block;
                                                                    float: left;
