@@ -255,7 +255,7 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
                             article > ul, section > ul,
                             article > dl, section > dl,
                             article > blockquote > ul, section > blockquote > ul,
-                            footer,
+                            .holds-notes, footer,
                             section > p, section > footer, section > table { width: 100%; }
                             pre.code { width: 97%; }
                             section > ol { width: 90%; }
