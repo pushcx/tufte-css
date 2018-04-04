@@ -108,7 +108,6 @@ article > .p, section > .p,
 article > ol, section > ol,
 article > ul, section > ul,
 article > dl, section > dl,
-article > blockquote > ul, section > blockquote > ul,
 .holds-notes, footer,
 section > p, section > footer, section > table { width: 55%; }
 
