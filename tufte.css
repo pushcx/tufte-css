@@ -31,7 +31,7 @@ h1 { font-weight: 400;
 h2 { font-style: italic;
      font-weight: 400;
      margin-top: 2.1rem;
-     margin-bottom: 0;
+     margin-bottom: 1.4rem;
      font-size: 2.2rem;
      line-height: 1; }
 
@@ -39,7 +39,7 @@ h3 { font-style: italic;
      font-weight: 400;
      font-size: 1.7rem;
      margin-top: 2rem;
-     margin-bottom: 0;
+     margin-bottom: 1.4rem;
      line-height: 1; }
 
 hr { display: block;
@@ -194,6 +194,7 @@ img { max-width: 100%;
                          left: 0.1rem; }
 
 .sidenote:before { content: counter(sidenote-counter) " ";
+                   font-size: 1rem;
                    top: -0.5rem; }
 
 blockquote .sidenote, blockquote .marginnote { margin-right: -82%;
@@ -258,7 +259,7 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
                             article > dl, section > dl,
                             article > blockquote > ul, section > blockquote > ul,
                             .holds-notes, footer,
-                            section > p, section > footer, section > table { width: 100%; }
+                            hr, section > p, section > footer, section > table { width: 100%; }
                             pre.code { width: 97%; }
                             section > ol { width: 90%; }
                             section > ul { width: 90%; }
