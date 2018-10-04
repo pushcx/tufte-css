@@ -9,7 +9,7 @@ little fixes to nest block-level elements in the main content.
 */
 
 /* Tufte CSS styles */
-html { font-size: 15px;
+html { font-size: 13px;
        letter-spacing: .03em; }
 
 body { width: 87.5%;
